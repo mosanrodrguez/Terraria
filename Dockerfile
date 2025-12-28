@@ -1,5 +1,6 @@
 FROM debian:bullseye-slim
 
+# Dependencias necesarias
 RUN apt-get update && apt-get install -y \
     wget unzip lib32gcc-s1 \
     && rm -rf /var/lib/apt/lists/*
@@ -9,7 +10,8 @@ WORKDIR /terraria
 # Descargar servidor oficial de Terraria (ejemplo versión 1433)
 RUN wget https://terraria.org/api/download/pc-dedicated-server/terraria-server-1433.zip -O terraria-server.zip \
     && unzip terraria-server.zip -d /terraria \
-    && rm terraria-server.zip
+    && rm terraria-server.zip \
+    && chmod +x /terraria/1433/Linux/TerrariaServer.bin.x86_64
 
 EXPOSE 7777
 
